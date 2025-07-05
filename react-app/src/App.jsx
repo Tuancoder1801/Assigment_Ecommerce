@@ -1,9 +1,9 @@
 import "./App.css";
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AdminIndex } from "./admin/index";
 import { AddProduct } from "./admin/products/addProduct";
-// import { ListProduct } from "./admin/products/listProduct";
-// import { UpdateProduct } from "./admin/products/updateProduct";
+import { ListProduct } from "./admin/products/listProduct";
+import { UpdateProduct } from "./admin/products/updateProduct";
 
 function App() {
   return (
@@ -11,8 +11,8 @@ function App() {
       <Routes>
         <Route path="/admin" element={<AdminIndex />} />
         <Route path="/admin/add-product" element={<AddProduct />} />
-        {/* <Route path="/admin/list-product" element={<ListProduct />} />
-        <Route path="/admin/update-product/:id" element={<UpdateProduct />} /> */}
+        <Route path="/admin/list-product" element={<ListProduct />} />
+        <Route path="/admin/update-product/:id" element={<UpdateProduct />} />
       </Routes>
     </BrowserRouter>
   );

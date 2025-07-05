@@ -6,17 +6,9 @@ import { useState } from "react";
 export function AddProduct() {
   const [formData, setFormData] = useState({
     name: "",
-    //slug: "",
-    //category_id: "",
-    //brand_id: "",
-    short_description: "",
     description: "",
-    regular_price: "",
-    sale_price: "",
-    //SKU: "",
+    price: "",
     quantity: "",
-    stock_status: "instock",
-    featured: 0,
   });
 
   const [image, setImage] = useState(null);
@@ -91,12 +83,12 @@ export function AddProduct() {
                 <div className="main-content-inner">
                   <div className="main-content-wrap">
                     <div className="flex items-center flex-wrap justify-between gap20 mb-27">
-                      <h3>Add Product</h3>
+                      <h3>ADD PRODUCT</h3>
                       <ul className="breadcrumbs flex items-center flex-wrap justify-start gap10">
                         <li>
-                          <a href="index-2.html">
+                          {/* <a href="index-2.html">
                             <div className="text-tiny">Dashboard</div>
-                          </a>
+                          </a> */}
                         </li>
                         <li>
                           <i className="icon-chevron-right" />
@@ -147,26 +139,6 @@ export function AddProduct() {
                           </div>
                         </fieldset>
 
-                        {/* <fieldset className="shortdescription">
-                          <div className="body-title mb-10">
-                            Short Description{" "}
-                            <span className="tf-color-1">*</span>
-                          </div>
-                          <textarea
-                            className="mb-10 ht-150"
-                            name="short_description"
-                            placeholder="Short Description"
-                            tabIndex={0}
-                            aria-required="true"
-                            required=""
-                            value={formData.short_description}
-                            onChange={handleChange}
-                          />
-                          <div className="text-tiny">
-                            Do not exceed 100 characters when entering the
-                            product name.
-                          </div>
-                        </fieldset> */}
                         <fieldset className="description">
                           <div className="body-title mb-10">
                             Description <span className="tf-color-1">*</span>
@@ -248,7 +220,6 @@ export function AddProduct() {
                           </fieldset>
                         </div>
                         <div className="cols gap22">
-
                           <fieldset className="name">
                             <div className="body-title mb-10">
                               Quantity <span className="tf-color-1">*</span>
@@ -266,36 +237,6 @@ export function AddProduct() {
                             />
                           </fieldset>
                         </div>
-                        {/* <div className="cols gap22">
-                          <fieldset className="name">
-                            <div className="body-title mb-10">Stock</div>
-                            <div className="select mb-10">
-                              <select
-                                className=""
-                                name="stock_status"
-                                value={formData.stock_status}
-                                onChange={handleChange}
-                              >
-                                <option value="instock">InStock</option>
-                                <option value="outofstock">Out of Stock</option>
-                              </select>
-                            </div>
-                          </fieldset>
-                          <fieldset className="name">
-                            <div className="body-title mb-10">Featured</div>
-                            <div className="select mb-10">
-                              <select
-                                className=""
-                                name="featured"
-                                value={formData.featured}
-                                onChange={handleChange}
-                              >
-                                <option value={0}>No</option>
-                                <option value={1}>Yes</option>
-                              </select>
-                            </div>
-                          </fieldset>
-                        </div> */}
                         <div className="cols gap10">
                           <button className="tf-button w-full" type="submit">
                             Add product

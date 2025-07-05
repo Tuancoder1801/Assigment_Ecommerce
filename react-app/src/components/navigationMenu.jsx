@@ -26,7 +26,7 @@ export function NavigationMenu() {
                   <div className="icon">
                     <i className="icon-grid" />
                   </div>
-                  <div className="text">Dashboard</div>
+                  {/* <div className="text">Dashboard</div> */}
                 </a>
               </li>
             </ul>
@@ -53,7 +53,7 @@ export function NavigationMenu() {
                   </li>
                 </ul>
               </li>
-              <li className="menu-item has-children">
+              {/* <li className="menu-item has-children">
                 <a href="javascript:void(0);" className="menu-item-button">
                   <div className="icon">
                     <i className="icon-layers" />
@@ -92,7 +92,7 @@ export function NavigationMenu() {
                     </a>
                   </li>
                 </ul>
-              </li>
+              </li> */}
               <li className="menu-item has-children">
                 <a href="javascript:void(0);" className="menu-item-button">
                   <div className="icon">
