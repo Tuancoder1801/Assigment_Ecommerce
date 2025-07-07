@@ -13,8 +13,7 @@ export function AddProduct() {
 
   const [image, setImage] = useState(null);
   const [previewImage, setPreviewImage] = useState(null);
-  //   const [galleryImages, setGalleryImages] = useState([]);
-
+  
   const handleChange = (e) => {
     setFormData({
       ...formData,

@@ -48,51 +48,32 @@ export function NavigationMenu() {
                   </li>
                   <li className="sub-menu-item">
                     <a href="/admin/list-product" className="">
-                      <div className="text">Products</div>
+                      <div className="text">List Products</div>
                     </a>
                   </li>
                 </ul>
               </li>
-              {/* <li className="menu-item has-children">
+               <li className="menu-item has-children">
                 <a href="javascript:void(0);" className="menu-item-button">
                   <div className="icon">
                     <i className="icon-layers" />
                   </div>
-                  <div className="text">Brand</div>
+                  <div className="text">Customers</div>
                 </a>
                 <ul className="sub-menu">
                   <li className="sub-menu-item">
                     <a href="add-brand.html" className="">
-                      <div className="text">New Brand</div>
+                      <div className="text">New Customer</div>
                     </a>
                   </li>
                   <li className="sub-menu-item">
                     <a href="brands.html" className="">
-                      <div className="text">Brands</div>
+                      <div className="text">List Customers</div>
                     </a>
                   </li>
                 </ul>
               </li>
-              <li className="menu-item has-children">
-                <a href="javascript:void(0);" className="menu-item-button">
-                  <div className="icon">
-                    <i className="icon-layers" />
-                  </div>
-                  <div className="text">Category</div>
-                </a>
-                <ul className="sub-menu">
-                  <li className="sub-menu-item">
-                    <a href="add-category.html" className="">
-                      <div className="text">New Category</div>
-                    </a>
-                  </li>
-                  <li className="sub-menu-item">
-                    <a href="categories.html" className="">
-                      <div className="text">Categories</div>
-                    </a>
-                  </li>
-                </ul>
-              </li> */}
+              
               <li className="menu-item has-children">
                 <a href="javascript:void(0);" className="menu-item-button">
                   <div className="icon">
@@ -113,30 +94,7 @@ export function NavigationMenu() {
                   </li>
                 </ul>
               </li>
-              <li className="menu-item">
-                <a href="slider.html" className="">
-                  <div className="icon">
-                    <i className="icon-image" />
-                  </div>
-                  <div className="text">Slider</div>
-                </a>
-              </li>
-              <li className="menu-item">
-                <a href="coupons.html" className="">
-                  <div className="icon">
-                    <i className="icon-grid" />
-                  </div>
-                  <div className="text">Coupns</div>
-                </a>
-              </li>
-              <li className="menu-item">
-                <a href="users.html" className="">
-                  <div className="icon">
-                    <i className="icon-user" />
-                  </div>
-                  <div className="text">User</div>
-                </a>
-              </li>
+
               <li className="menu-item">
                 <a href="settings.html" className="">
                   <div className="icon">
