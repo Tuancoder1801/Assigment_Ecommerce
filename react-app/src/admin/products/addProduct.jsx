@@ -43,7 +43,7 @@ export function AddProduct() {
     }
 
     try {
-      const res = await fetch("http://localhost:5000/admin/add-product", {
+      const res = await fetch("http://localhost:5000/admin/product-service/add-product", {
         method: "POST",
         body: data,
       });

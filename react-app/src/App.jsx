@@ -5,6 +5,10 @@ import { AddProduct } from "./admin/products/addProduct";
 import { ListProduct } from "./admin/products/listProduct";
 import { UpdateProduct } from "./admin/products/updateProduct";
 
+import { AddCustomer } from "./admin/Customers/addCustomer";
+import { ListCustomer } from "./admin/Customers/listCustomer";
+import { UpdateCustomer } from "./admin/Customers/updateCustomer";
+
 function App() {
   return (
     <BrowserRouter>
@@ -14,6 +18,10 @@ function App() {
         <Route path="/admin/add-product" element={<AddProduct />} />
         <Route path="/admin/list-product" element={<ListProduct />} />
         <Route path="/admin/update-product/:id" element={<UpdateProduct />} />
+
+        <Route path="/admin/add-customer" element={<AddCustomer />} />
+        <Route path="/admin/list-customer" element={<ListCustomer />} />
+        <Route path="/admin/update-customer/:id" element={<UpdateCustomer />} />
       </Routes>
     </BrowserRouter>
   );

@@ -62,12 +62,12 @@ export function NavigationMenu() {
                 </a>
                 <ul className="sub-menu">
                   <li className="sub-menu-item">
-                    <a href="add-brand.html" className="">
+                    <a href="/admin/add-customer" className="">
                       <div className="text">New Customer</div>
                     </a>
                   </li>
                   <li className="sub-menu-item">
-                    <a href="brands.html" className="">
+                    <a href="/admin/list-customer" className="">
                       <div className="text">List Customers</div>
                     </a>
                   </li>

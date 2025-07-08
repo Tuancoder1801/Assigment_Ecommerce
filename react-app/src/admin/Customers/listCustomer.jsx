@@ -2,20 +2,60 @@ import { Footer } from "../../components/footer";
 import { NavigationMenu } from "../../components/navigationMenu";
 import { Header } from "../../components/header";
 
-export function ListProduct() {
+import { useEffect, useState } from "react";
+
+export function ListCustomer() {
+  const [customers, setCustomers] = useState([]);
+
+  useEffect(() => {
+    fetchCustomers();
+  }, []);
+
+  const fetchCustomers = async () => {
+    try {
+      const res = await fetch("http://localhost:5001/admin/customer-service/customers");
+      const data = await res.json();
+      setCustomers(data.customers || []);
+    } catch (err) {
+      console.error("Error fetching customers:", err);
+    }
+  };
+
+  const handleDelete = async (id) => {
+    if (!window.confirm("Are you sure you want to delete this product?"))
+      return;
+
+    try {
+      const res = await fetch(`http://localhost:5001/admin/customer-service/customers/${id}`, {
+        method: "DELETE",
+      });
+
+      if (res.ok) {
+        alert("Customer deleted!");
+        fetchCustomers();
+      } else {
+        const errData = await res.json();
+        alert("Error deleting customer: " + errData.message);
+      }
+    } catch (err) {
+      console.error("Error deleting customer:", err);
+      alert("Network error while deleting customer");
+    }
+  };
+
   return (
     <>
       <div id="wrapper">
         <div id="page" className="">
           <div className="layout-wrap">
-            <NavigationMenu/>
+            <NavigationMenu />
             <div className="section-content-right">
               <Header />
               <div className="main-content">
                 <div className="main-content-inner">
                   <div className="main-content-wrap">
                     <div className="flex items-center flex-wrap justify-between gap20 mb-27">
-                      <h3>Brands</h3>
+                      <h3>LIST CUSTOMER</h3>
                       <ul className="breadcrumbs flex items-center flex-wrap justify-start gap10">
                         <li>
                           <a href="index.html">
@@ -26,7 +66,7 @@ export function ListProduct() {
                           <i className="icon-chevron-right" />
                         </li>
                         <li>
-                          <div className="text-tiny">Brands</div>
+                          <div className="text-tiny">List Customer</div>
                         </li>
                       </ul>
                     </div>
@@ -75,45 +115,44 @@ export function ListProduct() {
                               </tr>
                             </thead>
                             <tbody>
-                              <tr>
-                                <td>4</td>
-                                <td className="pname">
-                                  <div className="image">
-                                    <img
-                                      src="1718066367.html"
-                                      alt=""
-                                      className="image"
-                                    />
-                                  </div>
-                                  <div className="name">
-                                    <a href="#" className="body-title-2">
-                                      Brand4
-                                    </a>
-                                  </div>
-                                </td>
-                                <td>brand4</td>
-                                <td>
-                                  <a href="#" target="_blank">
-                                    1
-                                  </a>
-                                </td>
-                                <td>
-                                  <div className="list-icon-function">
-                                    <a href="#">
-                                      <div className="item edit">
-                                        <i className="icon-edit-3" />
-                                      </div>
-                                    </a>
-                                    <form action="#" method="POST">
-                                      <div className="item text-danger delete">
+                              {customers.map((customer, index) => (
+                                <tr key={customer._id}>
+                                  <td>{index + 1}</td>
+                                  <td>{customer.fullName}</td>
+                                  <td>{customer.email}</td>
+                                  <td>{customer.phone}</td>
+                                  <td>{customer.address}</td>
+                                  <td>
+                                    <div className="list-icon-function">
+                                      <a
+                                        href={`/admin/update-customer/${customer._id}`}
+                                      >
+                                        <div className="item edit">
+                                          <i className="icon-edit-3" />
+                                        </div>
+                                      </a>
+                                      <div
+                                        className="item text-danger delete"
+                                        onClick={() =>
+                                          handleDelete(customer._id)
+                                        }
+                                        style={{ cursor: "pointer" }}
+                                      >
                                         <i className="icon-trash-2" />
                                       </div>
-                                    </form>
-                                  </div>
-                                </td>
-                              </tr>
+                                    </div>
+                                  </td>
+                                </tr>
+                              ))}
                             </tbody>
                           </table>
+                          {customers.length === 0 && (
+                            <div
+                              style={{ textAlign: "center", marginTop: "20px" }}
+                            >
+                              No customers found.
+                            </div>
+                          )}
                         </div>
                         <div className="divider" />
                         <div className="flex items-center justify-between flex-wrap gap10 wgp-pagination"></div>

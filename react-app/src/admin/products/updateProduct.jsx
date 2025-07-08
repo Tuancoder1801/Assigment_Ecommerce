@@ -22,7 +22,7 @@ export function UpdateProduct() {
   useEffect(() => {
     async function fetchProduct() {
       try {
-        const res = await fetch(`http://localhost:5000/admin/products/${id}`);
+        const res = await fetch(`http://localhost:5000/admin/product-service/products/${id}`);
         const data = await res.json();
 
         setFormData({
@@ -69,7 +69,7 @@ export function UpdateProduct() {
     }
 
     try {
-      const res = await fetch(`http://localhost:5000/admin/products/${id}`, {
+      const res = await fetch(`http://localhost:5000/admin/product-service/products/${id}`, {
         method: "PUT",
         body: formDataToSend,
       });

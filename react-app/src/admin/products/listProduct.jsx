@@ -14,7 +14,7 @@ export function ListProduct() {
 
   const fetchProducts = async () => {
     try {
-      const res = await fetch("http://localhost:5000/admin/products");
+      const res = await fetch("http://localhost:5000/admin/product-service/products");
       const data = await res.json();
       setProducts(data.products || []);
     } catch (err) {
@@ -27,7 +27,7 @@ export function ListProduct() {
       return;
 
     try {
-      const res = await fetch(`http://localhost:5000/admin/products/${id}`, {
+      const res = await fetch(`http://localhost:5000/admin/product-service/products/${id}`, {
         method: "DELETE",
       });
 

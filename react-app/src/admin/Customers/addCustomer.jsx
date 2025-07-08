@@ -3,7 +3,57 @@ import { NavigationMenu } from "../../components/navigationMenu";
 import { Header } from "../../components/header";
 import { useState } from "react";
 
-export function AddProduct() {
+export function AddCustomer() {
+  const [formData, setFormData] = useState({
+    fullName: "",
+    email: "",
+    phone: "",
+    address: "",
+  });
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const res = await fetch(
+        "http://localhost:5001/admin/customer-service/add-customer",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
+
+      if (res.ok) {
+        const resData = await res.json();
+        console.log(resData);
+        alert("Customer added!");
+        setFormData({
+          fullName: "",
+          email: "",
+          phone: "",
+          address: "",
+        });
+      } else {
+        const errorData = await res.json();
+        console.error(errorData);
+        alert("Error adding customer: " + errorData.message);
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Error adding customer");
+    }
+  };
+
   return (
     <>
       <div id="wrapper">
@@ -43,26 +93,25 @@ export function AddProduct() {
                     <div className="wg-box">
                       <form
                         className="form-new-product form-style-1"
-                        action="#"
-                        method="POST"
-                        encType="multipart/form-data"
+                        onSubmit={handleSubmit}
                       >
-                        <fieldset className="name">
+                        <fieldset className="fullName">
                           <div className="body-title">
                             Full Name <span className="tf-color-1">*</span>
                           </div>
                           <input
                             className="flex-grow"
                             type="text"
-                            placeholder="Brand name"
-                            name="name"
+                            placeholder="Full Name"
+                            name="fullName"
                             tabIndex={0}
-                            defaultValue=""
+                            value={formData.fullName}
                             aria-required="true"
                             required=""
+                            onChange={handleChange}
                           />
                         </fieldset>
-                        
+
                         <fieldset className="email">
                           <div className="body-title">
                             Email <span className="tf-color-1">*</span>
@@ -73,12 +122,13 @@ export function AddProduct() {
                             placeholder="Email"
                             name="email"
                             tabIndex={0}
-                            defaultValue=""
+                            value={formData.email}
                             aria-required="true"
                             required=""
+                            onChange={handleChange}
                           />
                         </fieldset>
-                        
+
                         <fieldset className="phone">
                           <div className="body-title">
                             Phone <span className="tf-color-1">*</span>
@@ -89,9 +139,10 @@ export function AddProduct() {
                             placeholder="Phone"
                             name="phone"
                             tabIndex={0}
-                            defaultValue=""
+                            value={formData.phone}
                             aria-required="true"
                             required=""
+                            onChange={handleChange}
                           />
                         </fieldset>
 
@@ -105,9 +156,10 @@ export function AddProduct() {
                             placeholder="Address"
                             name="address"
                             tabIndex={0}
-                            defaultValue=""
+                            value={formData.address}
                             aria-required="true"
                             required=""
+                            onChange={handleChange}
                           />
                         </fieldset>
 
