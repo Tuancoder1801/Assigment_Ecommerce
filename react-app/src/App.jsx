@@ -1,5 +1,5 @@
 import "./App.css";
-import { BrowserRouter, Routes, Route, Navigate  } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AdminIndex } from "./admin/index";
 import { AddProduct } from "./admin/products/addProduct";
 import { ListProduct } from "./admin/products/listProduct";
@@ -8,6 +8,8 @@ import { UpdateProduct } from "./admin/products/updateProduct";
 import { AddCustomer } from "./admin/Customers/addCustomer";
 import { ListCustomer } from "./admin/Customers/listCustomer";
 import { UpdateCustomer } from "./admin/Customers/updateCustomer";
+
+import { AddOrder } from "./admin/orders/addOrder";
 
 function App() {
   return (
@@ -22,6 +24,8 @@ function App() {
         <Route path="/admin/add-customer" element={<AddCustomer />} />
         <Route path="/admin/list-customer" element={<ListCustomer />} />
         <Route path="/admin/update-customer/:id" element={<UpdateCustomer />} />
+
+        <Route path="/admin/add-order" element={<AddOrder />} />
       </Routes>
     </BrowserRouter>
   );

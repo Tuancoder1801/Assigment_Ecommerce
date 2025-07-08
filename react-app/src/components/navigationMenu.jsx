@@ -53,7 +53,7 @@ export function NavigationMenu() {
                   </li>
                 </ul>
               </li>
-               <li className="menu-item has-children">
+              <li className="menu-item has-children">
                 <a href="javascript:void(0);" className="menu-item-button">
                   <div className="icon">
                     <i className="icon-layers" />
@@ -73,18 +73,18 @@ export function NavigationMenu() {
                   </li>
                 </ul>
               </li>
-              
+
               <li className="menu-item has-children">
                 <a href="javascript:void(0);" className="menu-item-button">
                   <div className="icon">
                     <i className="icon-file-plus" />
                   </div>
-                  <div className="text">Order</div>
+                  <div className="text">Orders</div>
                 </a>
                 <ul className="sub-menu">
                   <li className="sub-menu-item">
-                    <a href="orders.html" className="">
-                      <div className="text">Orders</div>
+                    <a href="/admin/add-order" className="">
+                      <div className="text">Add Order</div>
                     </a>
                   </li>
                   <li className="sub-menu-item">
