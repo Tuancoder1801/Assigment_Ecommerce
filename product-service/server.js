@@ -6,7 +6,7 @@ const cors = require('cors');
 const app = express();
 app.use(cors());
 
-app.use('/admin', require('./src/routes/productRoutes'));
+app.use('/admin/product-service', require('./src/routes/productRoutes'));
 app.use('/uploads', express.static('public/uploads'));
 
 app.use(express.json());
