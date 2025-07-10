@@ -16,10 +16,10 @@ export function AddOrder() {
                 <div className="main-content-inner">
                   <div className="main-content-wrap">
                     <div className="flex items-center flex-wrap justify-between gap20 mb-27">
-                      <h3>Add Order</h3>
+                      <h3>Brand infomation</h3>
                       <ul className="breadcrumbs flex items-center flex-wrap justify-start gap10">
                         <li>
-                          <a href="index-2.html">
+                          <a href="#">
                             <div className="text-tiny">Dashboard</div>
                           </a>
                         </li>
@@ -27,7 +27,7 @@ export function AddOrder() {
                           <i className="icon-chevron-right" />
                         </li>
                         <li>
-                          <a href="all-product.html">
+                          <a href="#">
                             <div className="text-tiny">Orders</div>
                           </a>
                         </li>
@@ -35,32 +35,26 @@ export function AddOrder() {
                           <i className="icon-chevron-right" />
                         </li>
                         <li>
-                          <div className="text-tiny">Add order</div>
+                          <div className="text-tiny">New Order</div>
                         </li>
                       </ul>
                     </div>
-                    {/* form-add-product */}
-                    <form
-                      className="tf-section-2 form-add-product"
-                      method="POST"
-                      encType="multipart/form-data"
-                      action="http://localhost:8000/admin/product/store"
-                    >
-                      <input
-                        type="hidden"
-                        name="_token"
-                        defaultValue="8LNRTO4LPXHvbK2vgRcXqMeLgqtqNGjzWSNru7Xx"
-                        autoComplete="off"
-                      />
-                      <div className="wg-box">
-                        <fieldset className="nameCustomer">
-                          <div className="body-title mb-10">
-                            Name Customer <span className="tf-color-1">*</span>
+                    {/* new-ordder */}
+                    <div className="wg-box">
+                      <form
+                        className="form-new-product form-style-1"
+                        action="#"
+                        method="POST"
+                        encType="multipart/form-data"
+                      >
+                        <fieldset className="name">
+                          <div className="body-title">
+                            Customer Name <span className="tf-color-1">*</span>
                           </div>
                           <input
-                            className="mb-10"
+                            className="flex-grow"
                             type="text"
-                            placeholder="Enter product name"
+                            placeholder="Brand name"
                             name="name"
                             tabIndex={0}
                             defaultValue=""
@@ -70,14 +64,14 @@ export function AddOrder() {
                         </fieldset>
 
                         <fieldset className="phone">
-                          <div className="body-title mb-10">
+                          <div className="body-title">
                             Phone <span className="tf-color-1">*</span>
                           </div>
                           <input
-                            className="mb-10"
+                            className="flex-grow"
                             type="text"
-                            placeholder="Enter product slug"
-                            name="slug"
+                            placeholder="phone"
+                            name="phone"
                             tabIndex={0}
                             defaultValue=""
                             aria-required="true"
@@ -85,15 +79,15 @@ export function AddOrder() {
                           />
                         </fieldset>
 
-                        <fieldset className="totalProducts">
-                          <div className="body-title mb-10">
-                            số sản phẩm <span className="tf-color-1">*</span>
+                        <fieldset className="totalProduct">
+                          <div className="body-title">
+                            tổng sản phẩm <span className="tf-color-1">*</span>
                           </div>
                           <input
-                            className="mb-10"
+                            className="flex-grow"
                             type="text"
-                            placeholder="Enter product slug"
-                            name="slug"
+                            placeholder="total product"
+                            name="totalProduct"
                             tabIndex={0}
                             defaultValue=""
                             aria-required="true"
@@ -102,7 +96,7 @@ export function AddOrder() {
                         </fieldset>
 
                         <div className="gap22 cols">
-                          <fieldset className="product">
+                          <fieldset className="product" style={{ width: 300 }}>
                             <div className="body-title mb-10">
                               Product 1 <span className="tf-color-1">*</span>
                             </div>
@@ -129,9 +123,63 @@ export function AddOrder() {
                             />
                           </fieldset>
 
-                          <fieldset className="product">
+                          <fieldset className="product" style={{ width: 300 }}>
                             <div className="body-title mb-10">
-                              Product 2 <span className="tf-color-1">*</span>
+                              Product 1 <span className="tf-color-1">*</span>
+                            </div>
+                            <div className="select">
+                              <select className="" name="product_id">
+                                <option>Choose product</option>
+                                <option value={1}>item 1</option>
+                                <option value={2}>item 2</option>
+                                <option value={3}>item 3</option>
+                                <option value={4}>item 4</option>
+                              </select>
+                            </div>
+                            <input
+                              type="text"
+                              name="price"
+                              value="0đ"
+                              readOnly
+                              className="readonly-price"
+                              style={{
+                                border: "1px solid #ccc",
+                                padding: "5px 10px",
+                                backgroundColor: "#f5f5f5",
+                              }}
+                            />
+                          </fieldset>
+
+                          <fieldset className="product" style={{ width: 300 }}>
+                            <div className="body-title mb-10">
+                              Product 1 <span className="tf-color-1">*</span>
+                            </div>
+                            <div className="select">
+                              <select className="" name="product_id">
+                                <option>Choose product</option>
+                                <option value={1}>item 1</option>
+                                <option value={2}>item 2</option>
+                                <option value={3}>item 3</option>
+                                <option value={4}>item 4</option>
+                              </select>
+                            </div>
+                            <input
+                              type="text"
+                              name="price"
+                              value="0đ"
+                              readOnly
+                              className="readonly-price"
+                              style={{
+                                border: "1px solid #ccc",
+                                padding: "5px 10px",
+                                backgroundColor: "#f5f5f5",
+                              }}
+                            />
+                          </fieldset>
+
+                          <fieldset className="product" style={{ width: 300 }}>
+                            <div className="body-title mb-10">
+                              Product 1 <span className="tf-color-1">*</span>
                             </div>
                             <div className="select">
                               <select className="" name="product_id">
@@ -158,12 +206,12 @@ export function AddOrder() {
                         </div>
 
                         <fieldset className="totalPrice">
-                          <div className="body-title mb-10">
-                            Tổng số tiền <span className="tf-color-1">*</span>
+                          <div className="body-title">
+                            tổng số tiền <span className="tf-color-1">*</span>
                           </div>
                           <input
                             type="text"
-                            name="price"
+                            name="totalPrice"
                             value="0đ"
                             readOnly
                             className="readonly-price"
@@ -175,18 +223,16 @@ export function AddOrder() {
                           />
                         </fieldset>
 
-                        <div className="cols gap10">
-                          <button className="tf-button w-full" type="submit">
-                            Add product
+                        <div className="bot">
+                          <div />
+                          <button className="tf-button w208" type="submit">
+                            Add Order
                           </button>
                         </div>
-                      </div>
-                    </form>
-                    {/* /form-add-product */}
+                      </form>
+                    </div>
                   </div>
-                  {/* /main-content-wrap */}
                 </div>
-                {/* /main-content-wrap */}
                 <Footer />
               </div>
             </div>

@@ -34,7 +34,7 @@ export function NavigationMenu() {
           <div className="center-item">
             <ul className="menu-list">
               <li className="menu-item has-children">
-                <a href="javascript:void(0);" className="menu-item-button">
+                <a href="#" className="menu-item-button" onClick={e => e.preventDefault()}>
                   <div className="icon">
                     <i className="icon-shopping-cart" />
                   </div>
@@ -54,7 +54,7 @@ export function NavigationMenu() {
                 </ul>
               </li>
               <li className="menu-item has-children">
-                <a href="javascript:void(0);" className="menu-item-button">
+                <a href="#" className="menu-item-button" onClick={e => e.preventDefault()}>
                   <div className="icon">
                     <i className="icon-layers" />
                   </div>
@@ -75,7 +75,7 @@ export function NavigationMenu() {
               </li>
 
               <li className="menu-item has-children">
-                <a href="javascript:void(0);" className="menu-item-button">
+                <a href="#" className="menu-item-button" onClick={e => e.preventDefault()}>
                   <div className="icon">
                     <i className="icon-file-plus" />
                   </div>
