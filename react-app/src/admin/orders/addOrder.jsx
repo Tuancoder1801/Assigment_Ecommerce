@@ -1,9 +1,97 @@
 import { Footer } from "../../components/footer";
 import { NavigationMenu } from "../../components/navigationMenu";
 import { Header } from "../../components/header";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 export function AddOrder() {
+  const [phone, setPhone] = useState("");
+  const [customerName, setCustomerName] = useState("");
+  const [products, setProducts] = useState([]);
+  const [selectedProducts, setSelectedProducts] = useState([]);
+  const [totalPrice, setTotalPrice] = useState(0);
+  const [productCount, setProductCount] = useState(1);
+  const [customerId, setCustomerId] = useState(null);
+
+  // Load danh sách sản phẩm từ Product Service
+  useEffect(() => {
+    axios
+      .get("http://localhost:5000/admin/product-service/products")
+      .then((res) => {
+        setProducts(res.data.products); // đảm bảo res.data.products là mảng
+      })
+      .catch((err) => console.error(err));
+  }, []);
+
+  // Tính tổng giá sản phẩm
+  useEffect(() => {
+    setSelectedProducts((prev) => {
+      const updated = [...prev];
+      while (updated.length < productCount) {
+        updated.push("");
+      }
+      return updated.slice(0, productCount); // giữ đúng số lượng
+    });
+  }, [productCount]);
+
+  useEffect(() => {
+    const total = selectedProducts.reduce((sum, id) => {
+      const product = products.find((p) => p._id === id);
+      return product ? sum + Number(product.price) : sum;
+    }, 0);
+    setTotalPrice(total);
+  }, [selectedProducts, products]);
+
+  // Lấy tên khách hàng theo số điện thoại
+  const handleCheckCustomer = async () => {
+    try {
+      const res = await axios.get(
+        `http://localhost:5001/admin/customer-service/phone/${phone}`
+      );
+      setCustomerName(res.data.name);
+      setCustomerId(res.data._id); // giữ lại ID để gửi kèm đơn hàng
+    } catch {
+      setCustomerName("Khách vãng lai");
+      setCustomerId(null); // không có ID
+    }
+  };
+
+  const handleTotalProductChange = (e) => {
+    const count = parseInt(e.target.value) || 0;
+    setProductCount(count); // ✅ sửa đúng biến
+
+    const newSelection = Array(count).fill("");
+    setSelectedProducts(newSelection);
+  };
+
+  // Chọn sản phẩm
+  const handleSelectProduct = (index, productId) => {
+    const updated = [...selectedProducts];
+    updated[index] = productId;
+    setSelectedProducts(updated);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const orderData = {
+      phone,
+      customerId, // có thể null
+      customerName,
+      products: selectedProducts.filter(Boolean),
+    };
+
+    try {
+      const res = await axios.post(
+        "http://localhost:5003/admin/order-service/add-order",
+        orderData
+      );
+      alert("Order created: " + res.data._id);
+    } catch {
+      alert("Failed to create order.");
+    }
+  };
+
   return (
     <>
       <div id="wrapper">
@@ -39,30 +127,13 @@ export function AddOrder() {
                         </li>
                       </ul>
                     </div>
-                    {/* new-ordder */}
+
+                    {/* form order */}
                     <div className="wg-box">
                       <form
                         className="form-new-product form-style-1"
-                        action="#"
-                        method="POST"
-                        encType="multipart/form-data"
+                        onSubmit={handleSubmit}
                       >
-                        <fieldset className="name">
-                          <div className="body-title">
-                            Customer Name <span className="tf-color-1">*</span>
-                          </div>
-                          <input
-                            className="flex-grow"
-                            type="text"
-                            placeholder="Brand name"
-                            name="name"
-                            tabIndex={0}
-                            defaultValue=""
-                            aria-required="true"
-                            required=""
-                          />
-                        </fieldset>
-
                         <fieldset className="phone">
                           <div className="body-title">
                             Phone <span className="tf-color-1">*</span>
@@ -70,149 +141,99 @@ export function AddOrder() {
                           <input
                             className="flex-grow"
                             type="text"
-                            placeholder="phone"
-                            name="phone"
-                            tabIndex={0}
-                            defaultValue=""
-                            aria-required="true"
-                            required=""
+                            placeholder="Enter phone"
+                            value={phone}
+                            onChange={(e) => setPhone(e.target.value)}
+                            onBlur={handleCheckCustomer}
+                            required
+                          />
+                        </fieldset>
+
+                        <fieldset className="name">
+                          <div className="body-title">
+                            Customer Name <span className="tf-color-1">*</span>
+                          </div>
+                          <input
+                            className="flex-grow"
+                            type="text"
+                            placeholder="Auto-filled"
+                            value={customerName}
+                            readOnly
                           />
                         </fieldset>
 
                         <fieldset className="totalProduct">
                           <div className="body-title">
-                            tổng sản phẩm <span className="tf-color-1">*</span>
+                            Tổng sản phẩm <span className="tf-color-1">*</span>
                           </div>
                           <input
-                            className="flex-grow"
-                            type="text"
-                            placeholder="total product"
-                            name="totalProduct"
-                            tabIndex={0}
-                            defaultValue=""
-                            aria-required="true"
-                            required=""
+                            type="number"
+                            value={productCount}
+                            onChange={handleTotalProductChange} // ✅ dùng function đúng
+                            required
                           />
                         </fieldset>
 
                         <div className="gap22 cols">
-                          <fieldset className="product" style={{ width: 300 }}>
-                            <div className="body-title mb-10">
-                              Product 1 <span className="tf-color-1">*</span>
-                            </div>
-                            <div className="select">
-                              <select className="" name="product_id">
-                                <option>Choose product</option>
-                                <option value={1}>item 1</option>
-                                <option value={2}>item 2</option>
-                                <option value={3}>item 3</option>
-                                <option value={4}>item 4</option>
-                              </select>
-                            </div>
-                            <input
-                              type="text"
-                              name="price"
-                              value="0đ"
-                              readOnly
-                              className="readonly-price"
-                              style={{
-                                border: "1px solid #ccc",
-                                padding: "5px 10px",
-                                backgroundColor: "#f5f5f5",
-                              }}
-                            />
-                          </fieldset>
-
-                          <fieldset className="product" style={{ width: 300 }}>
-                            <div className="body-title mb-10">
-                              Product 1 <span className="tf-color-1">*</span>
-                            </div>
-                            <div className="select">
-                              <select className="" name="product_id">
-                                <option>Choose product</option>
-                                <option value={1}>item 1</option>
-                                <option value={2}>item 2</option>
-                                <option value={3}>item 3</option>
-                                <option value={4}>item 4</option>
-                              </select>
-                            </div>
-                            <input
-                              type="text"
-                              name="price"
-                              value="0đ"
-                              readOnly
-                              className="readonly-price"
-                              style={{
-                                border: "1px solid #ccc",
-                                padding: "5px 10px",
-                                backgroundColor: "#f5f5f5",
-                              }}
-                            />
-                          </fieldset>
-
-                          <fieldset className="product" style={{ width: 300 }}>
-                            <div className="body-title mb-10">
-                              Product 1 <span className="tf-color-1">*</span>
-                            </div>
-                            <div className="select">
-                              <select className="" name="product_id">
-                                <option>Choose product</option>
-                                <option value={1}>item 1</option>
-                                <option value={2}>item 2</option>
-                                <option value={3}>item 3</option>
-                                <option value={4}>item 4</option>
-                              </select>
-                            </div>
-                            <input
-                              type="text"
-                              name="price"
-                              value="0đ"
-                              readOnly
-                              className="readonly-price"
-                              style={{
-                                border: "1px solid #ccc",
-                                padding: "5px 10px",
-                                backgroundColor: "#f5f5f5",
-                              }}
-                            />
-                          </fieldset>
-
-                          <fieldset className="product" style={{ width: 300 }}>
-                            <div className="body-title mb-10">
-                              Product 1 <span className="tf-color-1">*</span>
-                            </div>
-                            <div className="select">
-                              <select className="" name="product_id">
-                                <option>Choose product</option>
-                                <option value={1}>item 1</option>
-                                <option value={2}>item 2</option>
-                                <option value={3}>item 3</option>
-                                <option value={4}>item 4</option>
-                              </select>
-                            </div>
-                            <input
-                              type="text"
-                              name="price"
-                              value="0đ"
-                              readOnly
-                              className="readonly-price"
-                              style={{
-                                border: "1px solid #ccc",
-                                padding: "5px 10px",
-                                backgroundColor: "#f5f5f5",
-                              }}
-                            />
-                          </fieldset>
+                          {selectedProducts.map((value, index) => {
+                            const product = products.find(
+                              (p) => p._id === value
+                            );
+                            return (
+                              <fieldset
+                                key={index}
+                                className="product"
+                                style={{ width: 300 }}
+                              >
+                                <div className="body-title mb-10">
+                                  Product {index + 1}{" "}
+                                  <span className="tf-color-1">*</span>
+                                </div>
+                                <div className="select">
+                                  <select
+                                    name={`product_id_${index}`}
+                                    value={value}
+                                    onChange={(e) =>
+                                      handleSelectProduct(index, e.target.value)
+                                    }
+                                  >
+                                    <option value="">Choose product</option>
+                                    {products.map((p) => (
+                                      <option key={p._id} value={p._id}>
+                                        {p.name}
+                                      </option>
+                                    ))}
+                                  </select>
+                                </div>
+                                <input
+                                  type="text"
+                                  name="price"
+                                  value={
+                                    product
+                                      ? product.price.toLocaleString() + "đ"
+                                      : "0đ"
+                                  }
+                                  readOnly
+                                  className="readonly-price"
+                                  style={{
+                                    border: "1px solid #ccc",
+                                    padding: "5px 10px",
+                                    backgroundColor: "#f5f5f5",
+                                  }}
+                                />
+                              </fieldset>
+                            );
+                          })}
                         </div>
 
                         <fieldset className="totalPrice">
                           <div className="body-title">
-                            tổng số tiền <span className="tf-color-1">*</span>
+                            Tổng số tiền <span className="tf-color-1">*</span>
                           </div>
                           <input
                             type="text"
                             name="totalPrice"
-                            value="0đ"
+                            value={totalPrice.toLocaleString() + "đ"}
                             readOnly
                             className="readonly-price"
                             style={{
