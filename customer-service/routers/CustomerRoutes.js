@@ -12,4 +12,6 @@ router.delete("/customers/:id", customerController.deleteCustomer);
 
 router.put("/customers/:id", customerController.updateCustomer);
 
+router.get('/phone/:phone', customerController.getCustomerByPhone);
+
 module.exports = router;

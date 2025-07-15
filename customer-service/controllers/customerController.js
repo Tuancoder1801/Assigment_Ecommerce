@@ -64,3 +64,15 @@ exports.updateCustomer = async (req, res) => {
     res.status(500).json({ message: "Error updating Customer" });
   }
 };
+
+exports.getCustomerByPhone = async (req, res) => {
+  try {
+    const customer = await Customer.findOne({ phone: req.params.phone });
+    if (!customer) {
+      return res.status(404).json({ error: 'Customer not found' });
+    }
+    res.json(customer);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
