@@ -1,14 +1,19 @@
-const Order = require('../models/Order');
-const customerService = require('../services/customerService');
-const productService = require('../services/productService');
-
+const Order = require("../models/Order");
+const customerService = require("../services/customerService");
+const productService = require("../services/productService");
 
 exports.createOrder = async (req, res) => {
-  const { phone, products, customerId, customerName } = req.body;
+  const { phone, products, customerId, customerName, address } = req.body;
 
   try {
     if (!phone || !Array.isArray(products) || products.length === 0) {
-      return res.status(400).json({ error: "Phone and products are required." });
+      return res
+        .status(400)
+        .json({ error: "Phone and products are required." });
+    }
+
+    if (!address || address.trim() === "") {
+      return res.status(400).json({ error: "Address is required." });
     }
 
     let customer = null;
@@ -49,6 +54,7 @@ exports.createOrder = async (req, res) => {
       customerId: finalCustomerId,
       customerName: finalCustomerName,
       phone: finalPhone,
+      address: address.trim(), // ✅ thêm dòng này
       products: productDetails,
       totalProducts: productDetails.length,
       totalPrice,
