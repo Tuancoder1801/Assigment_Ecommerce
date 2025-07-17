@@ -9,6 +9,8 @@ import { AddCustomer } from "./admin/Customers/addCustomer";
 import { ListCustomer } from "./admin/Customers/listCustomer";
 import { UpdateCustomer } from "./admin/Customers/updateCustomer";
 
+import { Payment } from "./admin/payments/payment";
+
 import { AddOrder } from "./admin/orders/addOrder";
 
 function App() {
@@ -25,6 +27,8 @@ function App() {
         <Route path="/admin/update-customer/:id" element={<UpdateCustomer />} />
 
         <Route path="/admin/add-order" element={<AddOrder />} />
+
+        <Route path="/payment/:orderId" element={<Payment />} />
       </Routes>
     </BrowserRouter>
   );

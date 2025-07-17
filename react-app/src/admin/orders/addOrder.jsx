@@ -3,6 +3,7 @@ import { NavigationMenu } from "../../components/navigationMenu";
 import { Header } from "../../components/header";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export function AddOrder() {
   const [phone, setPhone] = useState("");
@@ -12,6 +13,11 @@ export function AddOrder() {
   const [totalPrice, setTotalPrice] = useState(0);
   const [productCount, setProductCount] = useState(1);
   const [customerId, setCustomerId] = useState(null);
+
+  const [address, setAddress] = useState("");
+  const [isGuest, setIsGuest] = useState(true);
+
+  const navigate = useNavigate();
 
   // Load danh sách sản phẩm từ Product Service
   useEffect(() => {
@@ -48,11 +54,15 @@ export function AddOrder() {
       const res = await axios.get(
         `http://localhost:5001/admin/customer-service/phone/${phone}`
       );
-      setCustomerName(res.data.name);
-      setCustomerId(res.data._id); // giữ lại ID để gửi kèm đơn hàng
+      setCustomerName(res.data.fullName);
+      setCustomerId(res.data._id);
+      setAddress(res.data.address || "");
+      setIsGuest(false); // có thông tin -> không phải khách vãng lai
     } catch {
       setCustomerName("Khách vãng lai");
-      setCustomerId(null); // không có ID
+      setCustomerId(null);
+      setAddress(""); // clear địa chỉ để user nhập
+      setIsGuest(true); // là khách vãng lai
     }
   };
 
@@ -76,8 +86,9 @@ export function AddOrder() {
 
     const orderData = {
       phone,
-      customerId, // có thể null
+      customerId,
       customerName,
+      address,
       products: selectedProducts.filter(Boolean),
     };
 
@@ -86,9 +97,12 @@ export function AddOrder() {
         "http://localhost:5003/admin/order-service/add-order",
         orderData
       );
-      alert("Order created: " + res.data._id);
-    } catch {
-      alert("Failed to create order.");
+      navigate(`/payment/${res.data._id}`);
+    } catch (err) {
+      console.error("❌ Error from server:", err.response?.data || err.message);
+      alert(
+        "Tạo đơn hàng thất bại: " + (err.response?.data?.message || err.message)
+      );
     }
   };
 
@@ -159,6 +173,25 @@ export function AddOrder() {
                             placeholder="Auto-filled"
                             value={customerName}
                             readOnly
+                          />
+                        </fieldset>
+
+                        <fieldset className="address">
+                          <div className="body-title">
+                            Address <span className="tf-color-1">*</span>
+                          </div>
+                          <input
+                            className="flex-grow"
+                            type="text"
+                            placeholder={
+                              isGuest ? "Enter address" : "Auto-filled"
+                            }
+                            value={address}
+                            onChange={(e) => {
+                              if (isGuest) setAddress(e.target.value); // chỉ cho nhập nếu là khách vãng lai
+                            }}
+                            readOnly={!isGuest}
+                            required
                           />
                         </fieldset>
 
