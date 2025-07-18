@@ -13,7 +13,9 @@ export function ListCustomer() {
 
   const fetchCustomers = async () => {
     try {
-      const res = await fetch("http://localhost:5001/admin/customer-service/customers");
+      const res = await fetch(
+        "http://localhost:5001/admin/customer-service/customers"
+      );
       const data = await res.json();
       setCustomers(data.customers || []);
     } catch (err) {
@@ -26,9 +28,12 @@ export function ListCustomer() {
       return;
 
     try {
-      const res = await fetch(`http://localhost:5001/admin/customer-service/customers/${id}`, {
-        method: "DELETE",
-      });
+      const res = await fetch(
+        `http://localhost:5001/admin/customer-service/customers/${id}`,
+        {
+          method: "DELETE",
+        }
+      );
 
       if (res.ok) {
         alert("Customer deleted!");
@@ -55,63 +60,20 @@ export function ListCustomer() {
                 <div className="main-content-inner">
                   <div className="main-content-wrap">
                     <div className="flex items-center flex-wrap justify-between gap20 mb-27">
-                      <h3>LIST CUSTOMER</h3>
-                      <ul className="breadcrumbs flex items-center flex-wrap justify-start gap10">
-                        <li>
-                          <a href="index.html">
-                            <div className="text-tiny">Dashboard</div>
-                          </a>
-                        </li>
-                        <li>
-                          <i className="icon-chevron-right" />
-                        </li>
-                        <li>
-                          <div className="text-tiny">List Customer</div>
-                        </li>
-                      </ul>
+                      <h3>Danh sách khách hàng</h3>
                     </div>
                     <div className="wg-box">
-                      <div className="flex items-center justify-between gap10 flex-wrap">
-                        <div className="wg-filter flex-grow">
-                          <form className="form-search">
-                            <fieldset className="name">
-                              <input
-                                type="text"
-                                placeholder="Search here..."
-                                className=""
-                                name="name"
-                                tabIndex={2}
-                                defaultValue=""
-                                aria-required="true"
-                                required=""
-                              />
-                            </fieldset>
-                            <div className="button-submit">
-                              <button className="" type="submit">
-                                <i className="icon-search" />
-                              </button>
-                            </div>
-                          </form>
-                        </div>
-                        <a
-                          className="tf-button style-1 w208"
-                          href="add-brand.html"
-                        >
-                          <i className="icon-plus" />
-                          Add new
-                        </a>
-                      </div>
                       <div className="wg-table table-all-user">
                         <div className="table-responsive">
                           <table className="table table-striped table-bordered">
                             <thead>
                               <tr>
-                                <th>#</th>
-                                <th>Full Name</th>
+                                <th>Stt</th>
+                                <th>Họ và tên</th>
                                 <th>Email</th>
-                                <th>Phone</th>
-                                <th>Address</th>
-                                <th>Action</th>
+                                <th>Số điện thoại</th>
+                                <th>Địa chỉ</th>
+                                <th>Tính năng</th>
                               </tr>
                             </thead>
                             <tbody>
@@ -150,7 +112,7 @@ export function ListCustomer() {
                             <div
                               style={{ textAlign: "center", marginTop: "20px" }}
                             >
-                              No customers found.
+                              Không có khách hàng nào được lưu trữ.
                             </div>
                           )}
                         </div>

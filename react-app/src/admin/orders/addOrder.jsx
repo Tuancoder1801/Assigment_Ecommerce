@@ -118,28 +118,7 @@ export function AddOrder() {
                 <div className="main-content-inner">
                   <div className="main-content-wrap">
                     <div className="flex items-center flex-wrap justify-between gap20 mb-27">
-                      <h3>Brand infomation</h3>
-                      <ul className="breadcrumbs flex items-center flex-wrap justify-start gap10">
-                        <li>
-                          <a href="#">
-                            <div className="text-tiny">Dashboard</div>
-                          </a>
-                        </li>
-                        <li>
-                          <i className="icon-chevron-right" />
-                        </li>
-                        <li>
-                          <a href="#">
-                            <div className="text-tiny">Orders</div>
-                          </a>
-                        </li>
-                        <li>
-                          <i className="icon-chevron-right" />
-                        </li>
-                        <li>
-                          <div className="text-tiny">New Order</div>
-                        </li>
-                      </ul>
+                      <h3>Thêm đơn hàng</h3>
                     </div>
 
                     {/* form order */}
@@ -150,12 +129,12 @@ export function AddOrder() {
                       >
                         <fieldset className="phone">
                           <div className="body-title">
-                            Phone <span className="tf-color-1">*</span>
+                            Số điện thoại <span className="tf-color-1">*</span>
                           </div>
                           <input
                             className="flex-grow"
                             type="text"
-                            placeholder="Enter phone"
+                            placeholder="nhập số điện thoại"
                             value={phone}
                             onChange={(e) => setPhone(e.target.value)}
                             onBlur={handleCheckCustomer}
@@ -165,12 +144,12 @@ export function AddOrder() {
 
                         <fieldset className="name">
                           <div className="body-title">
-                            Customer Name <span className="tf-color-1">*</span>
+                            Tên khách hàng <span className="tf-color-1">*</span>
                           </div>
                           <input
                             className="flex-grow"
                             type="text"
-                            placeholder="Auto-filled"
+                            placeholder="tự động hiển thị tên"
                             value={customerName}
                             readOnly
                           />
@@ -178,13 +157,15 @@ export function AddOrder() {
 
                         <fieldset className="address">
                           <div className="body-title">
-                            Address <span className="tf-color-1">*</span>
+                            Địa chỉ <span className="tf-color-1">*</span>
                           </div>
                           <input
                             className="flex-grow"
                             type="text"
                             placeholder={
-                              isGuest ? "Enter address" : "Auto-filled"
+                              isGuest
+                                ? "nhập địa chỉ"
+                                : "tự động hiển thị địa chỉ"
                             }
                             value={address}
                             onChange={(e) => {
@@ -202,7 +183,7 @@ export function AddOrder() {
                           <input
                             type="number"
                             value={productCount}
-                            onChange={handleTotalProductChange} // ✅ dùng function đúng
+                            onChange={handleTotalProductChange}
                             required
                           />
                         </fieldset>
@@ -219,7 +200,7 @@ export function AddOrder() {
                                 style={{ width: 300 }}
                               >
                                 <div className="body-title mb-10">
-                                  Product {index + 1}{" "}
+                                  Sản phẩm {index + 1}{" "}
                                   <span className="tf-color-1">*</span>
                                 </div>
                                 <div className="select">
@@ -230,7 +211,7 @@ export function AddOrder() {
                                       handleSelectProduct(index, e.target.value)
                                     }
                                   >
-                                    <option value="">Choose product</option>
+                                    <option value="">Chọn sản phẩm</option>
                                     {products.map((p) => (
                                       <option key={p._id} value={p._id}>
                                         {p.name}
@@ -280,7 +261,7 @@ export function AddOrder() {
                         <div className="bot">
                           <div />
                           <button className="tf-button w208" type="submit">
-                            Add Order
+                            Thêm và đến trang thanh toán
                           </button>
                         </div>
                       </form>

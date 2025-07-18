@@ -10,7 +10,7 @@ export function Payment() {
           <div className="layout-wrap">
             <NavigationMenu />
             <div className="section-content-right">
-              <Header/>
+              <Header />
               <div className="main-content">
                 <style
                   dangerouslySetInnerHTML={{
@@ -22,19 +22,6 @@ export function Payment() {
                   <div className="main-content-wrap">
                     <div className="flex items-center flex-wrap justify-between gap20 mb-27">
                       <h3>Thanh Toán</h3>
-                      {/* <ul className="breadcrumbs flex items-center flex-wrap justify-start gap10">
-                        <li>
-                          <a href="#">
-                            <div className="text-tiny">Dashboard</div>
-                          </a>
-                        </li>
-                        <li>
-                          <i className="icon-chevron-right" />
-                        </li>
-                        <li>
-                          <div className="text-tiny">Order Items</div>
-                        </li>
-                      </ul> */}
                     </div>
                     <div className="wg-box">
                       <div className="flex items-center justify-between gap10 flex-wrap">

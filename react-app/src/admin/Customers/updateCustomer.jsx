@@ -19,7 +19,9 @@ export function UpdateCustomer() {
   useEffect(() => {
     async function fetchCustomer() {
       try {
-        const res = await fetch(`http://localhost:5001/admin/customer-service/customers/${id}`);
+        const res = await fetch(
+          `http://localhost:5001/admin/customer-service/customers/${id}`
+        );
         const data = await res.json();
 
         setFormData({
@@ -45,30 +47,32 @@ export function UpdateCustomer() {
   };
 
   const handleSubmit = async (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  try {
-    const res = await fetch(`http://localhost:5001/admin/customer-service/customers/${id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    });
+    try {
+      const res = await fetch(
+        `http://localhost:5001/admin/customer-service/customers/${id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
 
-    if (res.ok) {
-      alert("Customer updated successfully!");
-      navigate("/admin/list-customer");
-    } else {
-      const errData = await res.json();
-      alert("Error updating customer: " + errData.message);
+      if (res.ok) {
+        alert("Customer updated successfully!");
+        navigate("/admin/list-customer");
+      } else {
+        const errData = await res.json();
+        alert("Error updating customer: " + errData.message);
+      }
+    } catch (err) {
+      console.error("Error updating customer:", err);
+      alert("Network error while updating customer");
     }
-  } catch (err) {
-    console.error("Error updating customer:", err);
-    alert("Network error while updating customer");
-  }
-};
-
+  };
 
   return (
     <>
@@ -82,28 +86,7 @@ export function UpdateCustomer() {
                 <div className="main-content-inner">
                   <div className="main-content-wrap">
                     <div className="flex items-center flex-wrap justify-between gap20 mb-27">
-                      <h3>UPDATE CUSTOMER</h3>
-                      <ul className="breadcrumbs flex items-center flex-wrap justify-start gap10">
-                        <li>
-                          <a href="#">
-                            <div className="text-tiny">Dashboard</div>
-                          </a>
-                        </li>
-                        <li>
-                          <i className="icon-chevron-right" />
-                        </li>
-                        <li>
-                          <a href="#">
-                            <div className="text-tiny">Customers</div>
-                          </a>
-                        </li>
-                        <li>
-                          <i className="icon-chevron-right" />
-                        </li>
-                        <li>
-                          <div className="text-tiny">New Brand</div>
-                        </li>
-                      </ul>
+                      <h3>Chỉnh sửa thông tin khách hàng</h3>
                     </div>
                     {/* new-customer */}
                     <div className="wg-box">
@@ -113,12 +96,12 @@ export function UpdateCustomer() {
                       >
                         <fieldset className="fullName">
                           <div className="body-title">
-                            Full Name <span className="tf-color-1">*</span>
+                            Họ và tên <span className="tf-color-1">*</span>
                           </div>
                           <input
                             className="flex-grow"
                             type="text"
-                            placeholder="Full Name"
+                            placeholder="nhập tên khách hàng"
                             name="fullName"
                             tabIndex={0}
                             value={formData.fullName}
@@ -135,7 +118,7 @@ export function UpdateCustomer() {
                           <input
                             className="flex-grow"
                             type="text"
-                            placeholder="Email"
+                            placeholder="nhập email"
                             name="email"
                             tabIndex={0}
                             value={formData.email}
@@ -147,12 +130,12 @@ export function UpdateCustomer() {
 
                         <fieldset className="phone">
                           <div className="body-title">
-                            Phone <span className="tf-color-1">*</span>
+                            Số điện thoại <span className="tf-color-1">*</span>
                           </div>
                           <input
                             className="flex-grow"
                             type="text"
-                            placeholder="Phone"
+                            placeholder="số điện thoại"
                             name="phone"
                             tabIndex={0}
                             value={formData.phone}
@@ -164,12 +147,12 @@ export function UpdateCustomer() {
 
                         <fieldset className="address">
                           <div className="body-title">
-                            Address <span className="tf-color-1">*</span>
+                            Địa chỉ <span className="tf-color-1">*</span>
                           </div>
                           <input
                             className="flex-grow"
                             type="text"
-                            placeholder="Address"
+                            placeholder="nhập địa chỉ"
                             name="address"
                             tabIndex={0}
                             value={formData.address}
@@ -182,7 +165,7 @@ export function UpdateCustomer() {
                         <div className="bot">
                           <div />
                           <button className="tf-button w208" type="submit">
-                            Update Customer
+                            Lưu thông tin
                           </button>
                         </div>
                       </form>

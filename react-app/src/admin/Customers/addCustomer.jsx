@@ -66,28 +66,7 @@ export function AddCustomer() {
                 <div className="main-content-inner">
                   <div className="main-content-wrap">
                     <div className="flex items-center flex-wrap justify-between gap20 mb-27">
-                      <h3>ADD CUSTOMER</h3>
-                      <ul className="breadcrumbs flex items-center flex-wrap justify-start gap10">
-                        <li>
-                          <a href="#">
-                            <div className="text-tiny">Dashboard</div>
-                          </a>
-                        </li>
-                        <li>
-                          <i className="icon-chevron-right" />
-                        </li>
-                        <li>
-                          <a href="#">
-                            <div className="text-tiny">Brands</div>
-                          </a>
-                        </li>
-                        <li>
-                          <i className="icon-chevron-right" />
-                        </li>
-                        <li>
-                          <div className="text-tiny">New Brand</div>
-                        </li>
-                      </ul>
+                      <h3>Thêm khách hàng mới</h3>
                     </div>
                     {/* new-customer */}
                     <div className="wg-box">
@@ -97,12 +76,12 @@ export function AddCustomer() {
                       >
                         <fieldset className="fullName">
                           <div className="body-title">
-                            Full Name <span className="tf-color-1">*</span>
+                            Họ và tên <span className="tf-color-1">*</span>
                           </div>
                           <input
                             className="flex-grow"
                             type="text"
-                            placeholder="Full Name"
+                            placeholder="nhập họ và tên"
                             name="fullName"
                             tabIndex={0}
                             value={formData.fullName}
@@ -119,7 +98,7 @@ export function AddCustomer() {
                           <input
                             className="flex-grow"
                             type="text"
-                            placeholder="Email"
+                            placeholder="nhập email"
                             name="email"
                             tabIndex={0}
                             value={formData.email}
@@ -131,12 +110,12 @@ export function AddCustomer() {
 
                         <fieldset className="phone">
                           <div className="body-title">
-                            Phone <span className="tf-color-1">*</span>
+                            Số điện thoại <span className="tf-color-1">*</span>
                           </div>
                           <input
                             className="flex-grow"
                             type="text"
-                            placeholder="Phone"
+                            placeholder="nhập số điện thoại"
                             name="phone"
                             tabIndex={0}
                             value={formData.phone}
@@ -148,12 +127,12 @@ export function AddCustomer() {
 
                         <fieldset className="address">
                           <div className="body-title">
-                            Address <span className="tf-color-1">*</span>
+                            Địa chỉ <span className="tf-color-1">*</span>
                           </div>
                           <input
                             className="flex-grow"
                             type="text"
-                            placeholder="Address"
+                            placeholder="nhập địa chỉ"
                             name="address"
                             tabIndex={0}
                             value={formData.address}
@@ -166,7 +145,7 @@ export function AddCustomer() {
                         <div className="bot">
                           <div />
                           <button className="tf-button w208" type="submit">
-                            Add Customer
+                            Thêm khách hàng
                           </button>
                         </div>
                       </form>

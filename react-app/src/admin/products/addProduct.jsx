@@ -13,7 +13,7 @@ export function AddProduct() {
 
   const [image, setImage] = useState(null);
   const [previewImage, setPreviewImage] = useState(null);
-  
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -43,10 +43,13 @@ export function AddProduct() {
     }
 
     try {
-      const res = await fetch("http://localhost:5000/admin/product-service/add-product", {
-        method: "POST",
-        body: data,
-      });
+      const res = await fetch(
+        "http://localhost:5000/admin/product-service/add-product",
+        {
+          method: "POST",
+          body: data,
+        }
+      );
 
       if (res.ok) {
         const resData = await res.json();
@@ -82,28 +85,7 @@ export function AddProduct() {
                 <div className="main-content-inner">
                   <div className="main-content-wrap">
                     <div className="flex items-center flex-wrap justify-between gap20 mb-27">
-                      <h3>ADD PRODUCT</h3>
-                      <ul className="breadcrumbs flex items-center flex-wrap justify-start gap10">
-                        <li>
-                          {/* <a href="index-2.html">
-                            <div className="text-tiny">Dashboard</div>
-                          </a> */}
-                        </li>
-                        <li>
-                          <i className="icon-chevron-right" />
-                        </li>
-                        <li>
-                          <a href="all-product.html">
-                            <div className="text-tiny">Products</div>
-                          </a>
-                        </li>
-                        <li>
-                          <i className="icon-chevron-right" />
-                        </li>
-                        <li>
-                          <div className="text-tiny">Add product</div>
-                        </li>
-                      </ul>
+                      <h3>Thêm sản phẩm mới</h3>
                     </div>
                     {/* form-add-product */}
                     <form
@@ -119,12 +101,12 @@ export function AddProduct() {
                       <div className="wg-box">
                         <fieldset className="name">
                           <div className="body-title mb-10">
-                            Product name <span className="tf-color-1">*</span>
+                            Tên sản phẩm <span className="tf-color-1">*</span>
                           </div>
                           <input
                             className="mb-10"
                             type="text"
-                            placeholder="Enter product name"
+                            placeholder="Nhập tên sản phẩm"
                             name="name"
                             tabIndex={0}
                             value={formData.name}
@@ -132,36 +114,29 @@ export function AddProduct() {
                             required=""
                             onChange={handleChange}
                           />
-                          <div className="text-tiny">
-                            Do not exceed 100 characters when entering the
-                            product name.
-                          </div>
                         </fieldset>
 
                         <fieldset className="description">
                           <div className="body-title mb-10">
-                            Description <span className="tf-color-1">*</span>
+                            Mô tả <span className="tf-color-1">*</span>
                           </div>
                           <textarea
                             className="mb-10"
                             name="description"
-                            placeholder="Description"
+                            placeholder="nhập mô tả sản phẩm"
                             tabIndex={0}
                             aria-required="true"
                             required=""
                             value={formData.description}
                             onChange={handleChange}
                           />
-                          <div className="text-tiny">
-                            Do not exceed 100 characters when entering the
-                            product name.
-                          </div>
                         </fieldset>
                       </div>
                       <div className="wg-box">
                         <fieldset>
                           <div className="body-title">
-                            Upload images <span className="tf-color-1">*</span>
+                            Tải hình ảnh sản phẩm{" "}
+                            <span className="tf-color-1">*</span>
                           </div>
                           <div className="upload-image flex-grow">
                             <div
@@ -183,9 +158,9 @@ export function AddProduct() {
                                   <i className="icon-upload-cloud" />
                                 </span>
                                 <span className="body-text">
-                                  Drop your images here or select{" "}
+                                  Thả hình ảnh của bạn vào đây hoặc chọn{" "}
                                   <span className="tf-color">
-                                    click to browse
+                                    nhấp để duyệt
                                   </span>
                                 </span>
                                 <input
@@ -203,12 +178,12 @@ export function AddProduct() {
                         <div className="cols gap22">
                           <fieldset className="name">
                             <div className="body-title mb-10">
-                              Price <span className="tf-color-1">*</span>
+                              Giá tiền <span className="tf-color-1">*</span>
                             </div>
                             <input
                               className="mb-10"
                               type="text"
-                              placeholder="Enter price"
+                              placeholder="nhập giá tiền sản phẩm"
                               name="price"
                               tabIndex={0}
                               defaultValue=""
@@ -221,12 +196,13 @@ export function AddProduct() {
                         <div className="cols gap22">
                           <fieldset className="name">
                             <div className="body-title mb-10">
-                              Quantity <span className="tf-color-1">*</span>
+                              Số lương trong kho{" "}
+                              <span className="tf-color-1">*</span>
                             </div>
                             <input
                               className="mb-10"
                               type="number"
-                              placeholder="Enter quantity"
+                              placeholder="nhập số lượng trong kho"
                               name="quantity"
                               tabIndex={0}
                               value={formData.quantity}
@@ -238,7 +214,7 @@ export function AddProduct() {
                         </div>
                         <div className="cols gap10">
                           <button className="tf-button w-full" type="submit">
-                            Add product
+                            Thêm sản phẩm
                           </button>
                         </div>
                       </div>

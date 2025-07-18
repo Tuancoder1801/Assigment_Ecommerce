@@ -4,10 +4,10 @@ export function Header() {
       <div className="header-dashboard">
         <div className="wrap">
           <div className="header-left">
-            <a href="index-2.html">
+            <a href="/">
               <img
                 className=""
-                id="logo_header_mobile"
+                id="logo_header"
                 alt=""
                 src="images/logo/logo.png"
                 data-light="images/logo/logo.png"
@@ -20,151 +20,6 @@ export function Header() {
             <div className="button-show-hide">
               <i className="icon-menu-left" />
             </div>
-            <form className="form-search flex-grow">
-              <fieldset className="name">
-                <input
-                  type="text"
-                  placeholder="Search here..."
-                  className="show-search"
-                  name="name"
-                  tabIndex={2}
-                  defaultValue=""
-                  aria-required="true"
-                  required=""
-                />
-              </fieldset>
-              <div className="button-submit">
-                <button className="" type="submit">
-                  <i className="icon-search" />
-                </button>
-              </div>
-              <div className="box-content-search" id="box-content-search">
-                <ul className="mb-24">
-                  <li className="mb-14">
-                    <div className="body-title">Top selling product</div>
-                  </li>
-                  <li className="mb-14">
-                    <div className="divider" />
-                  </li>
-                  <li>
-                    <ul>
-                      <li className="product-item gap14 mb-10">
-                        <div className="image no-bg">
-                          <img src="images/products/17.png" alt="" />
-                        </div>
-                        <div className="flex items-center justify-between gap20 flex-grow">
-                          <div className="name">
-                            <a href="product-list.html" className="body-text">
-                              Dog Food Rachael Ray Nutrish®
-                            </a>
-                          </div>
-                        </div>
-                      </li>
-                      <li className="mb-10">
-                        <div className="divider" />
-                      </li>
-                      <li className="product-item gap14 mb-10">
-                        <div className="image no-bg">
-                          <img src="images/products/18.png" alt="" />
-                        </div>
-                        <div className="flex items-center justify-between gap20 flex-grow">
-                          <div className="name">
-                            <a href="product-list.html" className="body-text">
-                              Natural Dog Food Healthy Dog Food
-                            </a>
-                          </div>
-                          https://transform.tools/json-to-big-query
-                        </div>
-                      </li>
-                      <li className="mb-10">
-                        <div className="divider" />
-                      </li>
-                      <li className="product-item gap14">
-                        <div className="image no-bg">
-                          <img src="images/products/19.png" alt="" />
-                        </div>
-                        <div className="flex items-center justify-between gap20 flex-grow">
-                          <div className="name">
-                            <a href="product-list.html" className="body-text">
-                              Freshpet Healthy Dog Food and Cat
-                            </a>
-                          </div>
-                        </div>
-                      </li>
-                    </ul>
-                  </li>
-                </ul>
-                <ul className="">
-                  <li className="mb-14">
-                    <div className="body-title">Order product</div>
-                  </li>
-                  <li className="mb-14">
-                    <div className="divider" />
-                  </li>
-                  <li>
-                    <ul>
-                      <li className="product-item gap14 mb-10">
-                        <div className="image no-bg">
-                          <img src="images/products/20.png" alt="" />
-                        </div>
-                        <div className="flex items-center justify-between gap20 flex-grow">
-                          <div className="name">
-                            <a href="product-list.html" className="body-text">
-                              Sojos Crunchy Natural Grain Free...
-                            </a>
-                          </div>
-                        </div>
-                      </li>
-                      <li className="mb-10">
-                        <div className="divider" />
-                      </li>
-                      <li className="product-item gap14 mb-10">
-                        <div className="image no-bg">
-                          <img src="images/products/21.png" alt="" />
-                        </div>
-                        <div className="flex items-center justify-between gap20 flex-grow">
-                          <div className="name">
-                            <a href="product-list.html" className="body-text">
-                              Kristin Watson
-                            </a>
-                          </div>
-                        </div>
-                      </li>
-                      <li className="mb-10">
-                        <div className="divider" />
-                      </li>
-                      <li className="product-item gap14 mb-10">
-                        <div className="image no-bg">
-                          <img src="images/products/22.png" alt="" />
-                        </div>
-                        <div className="flex items-center justify-between gap20 flex-grow">
-                          <div className="name">
-                            <a href="product-list.html" className="body-text">
-                              Mega Pumpkin Bone
-                            </a>
-                          </div>
-                        </div>
-                      </li>
-                      <li className="mb-10">
-                        <div className="divider" />
-                      </li>
-                      <li className="product-item gap14">
-                        <div className="image no-bg">
-                          <img src="images/products/23.png" alt="" />
-                        </div>
-                        <div className="flex items-center justify-between gap20 flex-grow">
-                          <div className="name">
-                            <a href="product-list.html" className="body-text">
-                              Mega Pumpkin Bone
-                            </a>
-                          </div>
-                        </div>
-                      </li>
-                    </ul>
-                  </li>
-                </ul>
-              </div>
-            </form>
           </div>
           <div className="header-grid">
             <div className="popup-wrap message type-header">

@@ -14,7 +14,9 @@ export function ListProduct() {
 
   const fetchProducts = async () => {
     try {
-      const res = await fetch("http://localhost:5000/admin/product-service/products");
+      const res = await fetch(
+        "http://localhost:5000/admin/product-service/products"
+      );
       const data = await res.json();
       setProducts(data.products || []);
     } catch (err) {
@@ -27,9 +29,12 @@ export function ListProduct() {
       return;
 
     try {
-      const res = await fetch(`http://localhost:5000/admin/product-service/products/${id}`, {
-        method: "DELETE",
-      });
+      const res = await fetch(
+        `http://localhost:5000/admin/product-service/products/${id}`,
+        {
+          method: "DELETE",
+        }
+      );
 
       if (res.ok) {
         alert("Product deleted!");
@@ -56,62 +61,19 @@ export function ListProduct() {
                 <div className="main-content-inner">
                   <div className="main-content-wrap">
                     <div className="flex items-center flex-wrap justify-between gap20 mb-27">
-                      <h3>LIST PRODUCTS</h3>
-                      <ul className="breadcrumbs flex items-center flex-wrap justify-start gap10">
-                        <li>
-                          {/* <a href="index.html">
-                            <div className="text-tiny">Dashboard</div>
-                          </a> */}
-                        </li>
-                        <li>
-                          <i className="icon-chevron-right" />
-                        </li>
-                        <li>
-                          <div className="text-tiny">List Products</div>
-                        </li>
-                      </ul>
+                      <h3>Danh sách sản phẩm</h3>
                     </div>
                     <div className="wg-box">
-                      <div className="flex items-center justify-between gap10 flex-wrap">
-                        <div className="wg-filter flex-grow">
-                          <form className="form-search">
-                            <fieldset className="name">
-                              <input
-                                type="text"
-                                placeholder="Search here..."
-                                className=""
-                                name="name"
-                                tabIndex={2}
-                                defaultValue=""
-                                aria-required="true"
-                                required=""
-                              />
-                            </fieldset>
-                            <div className="button-submit">
-                              <button className="" type="submit">
-                                <i className="icon-search" />
-                              </button>
-                            </div>
-                          </form>
-                        </div>
-                        <a
-                          className="tf-button style-1 w208"
-                          href="/admin/add-product"
-                        >
-                          <i className="icon-plus" />
-                          Add new
-                        </a>
-                      </div>
                       <div className="table-responsive">
                         <table className="table table-striped table-bordered">
                           <thead>
                             <tr>
-                              <th>#</th>
-                              <th>Name</th>
-                              <th>Image</th>
-                              <th>Price</th>
-                              <th>Quantity</th>
-                              <th>Action</th>
+                              <th>Stt</th>
+                              <th>Tên</th>
+                              <th>Hình ảnh</th>
+                              <th>Giá tiền</th>
+                              <th>Số lượng trong kho</th>
+                              <th>Tính năng</th>
                             </tr>
                           </thead>
                           <tbody>
@@ -164,7 +126,7 @@ export function ListProduct() {
                           <div
                             style={{ textAlign: "center", marginTop: "20px" }}
                           >
-                            No products found.
+                            Không có sản phẩm nào trong dữ liệu
                           </div>
                         )}
                       </div>
