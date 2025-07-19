@@ -19,24 +19,22 @@ export function AddOrder() {
 
   const navigate = useNavigate();
 
-  // Load danh sách sản phẩm từ Product Service
   useEffect(() => {
     axios
       .get("http://localhost:5000/admin/product-service/products")
       .then((res) => {
-        setProducts(res.data.products); // đảm bảo res.data.products là mảng
+        setProducts(res.data.products);
       })
       .catch((err) => console.error(err));
   }, []);
 
-  // Tính tổng giá sản phẩm
   useEffect(() => {
     setSelectedProducts((prev) => {
       const updated = [...prev];
       while (updated.length < productCount) {
         updated.push("");
       }
-      return updated.slice(0, productCount); // giữ đúng số lượng
+      return updated.slice(0, productCount);
     });
   }, [productCount]);
 
@@ -50,6 +48,8 @@ export function AddOrder() {
 
   // Lấy tên khách hàng theo số điện thoại
   const handleCheckCustomer = async () => {
+    if (!phone || phone.length < 5) return; // bỏ gọi nếu phone không hợp lệ
+
     try {
       const res = await axios.get(
         `http://localhost:5001/admin/customer-service/phone/${phone}`
@@ -57,12 +57,12 @@ export function AddOrder() {
       setCustomerName(res.data.fullName);
       setCustomerId(res.data._id);
       setAddress(res.data.address || "");
-      setIsGuest(false); // có thông tin -> không phải khách vãng lai
+      setIsGuest(false);
     } catch {
       setCustomerName("Khách vãng lai");
       setCustomerId(null);
-      setAddress(""); // clear địa chỉ để user nhập
-      setIsGuest(true); // là khách vãng lai
+      setAddress("");
+      setIsGuest(true);
     }
   };
 

@@ -6309,3 +6309,138 @@ select.h40 {
 }
 
 /*# sourceMappingURL=style.css.map */
+
+/* s.menu-item-button {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 10px 15px;
+  text-align: left;
+  border: none;
+  background: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  outline: none;
+}
+
+.menu-item-button:hover {
+  background-color: #f5f5f5;
+} */
+
+/* button {
+  background: #fbca1f;
+  font-family: inherit;
+  padding: 0.6em 1.3em;
+  font-weight: 900;
+  font-size: 18px;
+  border: 3px solid black;
+  border-radius: 0.4em;
+  box-shadow: 0.1em 0.1em;
+  cursor: pointer;
+}
+
+button:hover {
+  transform: translate(-0.05em, -0.05em);
+  box-shadow: 0.15em 0.15em;
+}
+
+button:active {
+  transform: translate(0.05em, 0.05em);
+  box-shadow: 0.05em 0.05em;
+} */
+
+/* From Uiverse.io by mrhyddenn */ 
+/* .menu-item-button{
+  background: #fff;
+  border: none;
+  padding: 10px 20px;
+  display: inline-block;
+  font-size: 15px;
+  font-weight: 600;
+  width: 120px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transform: skew(-21deg);
+}
+
+.menu-item-button span {
+  display: inline-block;
+  transform: skew(21deg);
+}
+
+.menu-item-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 100%;
+  left: 0;
+  background: rgb(20, 20, 20);
+  opacity: 0;
+  z-index: -1;
+  transition: all 0.5s;
+}
+
+.menu-item-button:hover {
+  color: #fff;
+}
+
+.menu-item-button:hover::before {
+  left: 0;
+  right: 0;
+  opacity: 1;
+} */
+
+.menu-item-button {
+  background-color: #f4f4f4;
+  border: none;
+  width: 100%;
+  padding: 12px 20px;
+  text-align: left;
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+}
+
+.menu-item-button:hover {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.menu-item-button .icon i {
+  font-size: 18px;
+}
+
+.menu-item-button .text {
+  flex: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.sub-menu {
+  padding-left: 20px;
+  margin-top: 5px;
+}
+
+.sub-menu-item {
+  margin: 5px 0;
+}
+
+.sub-menu-item a {
+  font-size: 13px;
+  color: #444;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.sub-menu-item a:hover {
+  color: #007bff;
+}
