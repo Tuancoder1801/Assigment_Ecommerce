@@ -1,15 +1,25 @@
-exports.processPayment = async (req, res) => {
-  const { orderId, method } = req.body;
+const axios = require("axios");
 
-  console.log(`Received payment for order ${orderId} via ${method}`);
+exports.fakePayment = async (req, res) => {
+  console.log("📥 TOÀN BỘ req.body:", req.body);
 
-  // Giả lập xử lý thanh toán
-  if (method === "stripe") {
-    // gọi đến Stripe sandbox nếu cần
-    return res.json({ status: "PAID via Stripe" });
-  } else if (method === "paypal") {
-    return res.json({ status: "PAID via PayPal" });
-  } else {
-    return res.json({ status: "COD selected" });
+  const id = req.body?.id;
+  if (!id) return res.status(400).json({ error: "Thiếu orderId trong body" });
+
+  console.log("🧾 ID nhận được từ frontend:", id);
+
+  try {
+    const response = await axios.put(`http://localhost:5003/admin/order-service/paid/${id}`, {
+      paymentStatus: "Đã thanh toán",
+      paymentMethod: "mock",
+    });
+
+    console.log("✅ Kết quả từ order-service:", response.data);
+    res.json({ message: "Thanh toán thành công (giả lập)" });
+  } catch (err) {
+    console.error("❌ Lỗi cập nhật đơn hàng:", err.response?.data || err.message);
+    res.status(500).json({ error: "Đã thanh toán nhưng không cập nhật được đơn hàng" });
   }
 };
+
+

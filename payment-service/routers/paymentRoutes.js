@@ -1,7 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const { processPayment } = require("../controllers/paymentController");
+const { fakePayment } = require("../controllers/paymentController");
 
-router.post("/pay", processPayment);
+// Route POST cho fake-checkout
+router.post("/fake-checkout", fakePayment);
 
 module.exports = router;
