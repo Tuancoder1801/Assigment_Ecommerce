@@ -23,6 +23,9 @@ const orderSchema = new mongoose.Schema({
   ],
   totalProducts: Number,
   totalPrice: Number,
+  paymentStatus: { type: String, default: "Chưa thanh toán" },
+  paymentMethod: { type: String },
+  paidAt: { type: Date },
   createdAt: { type: Date, default: Date.now },
 });
 

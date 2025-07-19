@@ -67,3 +67,41 @@ exports.createOrder = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+
+exports.getOrderById = async (req, res) => {
+   console.log("🛠️ orderId nhận được:", req.params.id);
+  try {
+    const order = await Order.findById(req.params.id);
+    if (!order) return res.status(404).json({ error: "Order not found" });
+    res.json(order);
+  } catch (err) {
+    console.error("Error in getOrderById:", err);
+    res.status(500).json({ error: "Internal server error" });
+  }
+};
+
+
+exports.updateOrderPaid = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const order = await Order.findById(id);
+
+    if (!order) {
+      console.log("⚠️ Không tìm thấy đơn hàng với ID:", id);
+      return res.status(404).json({ error: "Order not found" });
+    }
+
+    order.paymentStatus = req.body.paymentStatus || "Đã thanh toán";
+    order.paymentMethod = req.body.paymentMethod || "mock";
+    order.paidAt = new Date();
+
+    await order.save();
+    console.log("✅ Đơn hàng đã được cập nhật:", order);
+    res.json({ message: "✅ Đã cập nhật trạng thái thanh toán", order });
+  } catch (err) {
+    console.error("❌ Lỗi updateOrderPaid:", err.message);
+    res.status(500).json({ error: "Cập nhật trạng thái thanh toán thất bại" });
+  }
+};
+
