@@ -105,3 +105,12 @@ exports.updateOrderPaid = async (req, res) => {
   }
 };
 
+exports.getOrders = async (req, res) => {
+  try {
+    const orders = await Order.find().sort({ createdAt: -1 });
+    res.json({ success: true, orders });
+  } catch (err) {
+    console.error("Lỗi lấy danh sách đơn hàng:", err);
+    res.status(500).json({ success: false, message: "Lỗi server" });
+  }
+};
