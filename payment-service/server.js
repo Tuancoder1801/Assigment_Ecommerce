@@ -12,6 +12,5 @@ app.use(express.json());
 app.use("/payment-service", paymentRoutes);
 
 // Start server
-app.listen(5004, () => {
-  console.log("✅ Payment service running on port 5004");
-});
+const PORT = process.env.PORT || 5004;
+app.listen(PORT, () => console.log(`Auth service running on port ${PORT}`));
