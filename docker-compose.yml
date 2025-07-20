@@ -1,0 +1,83 @@
+version: "3.8"
+
+services:
+  mongo:
+    image: mongo:5
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - ecommerce-net
+
+  customer-service:
+    build: ./customer-service
+    ports:
+      - "5001:5001"
+    env_file:
+      - ./customer-service/.env
+    volumes:
+      - ./customer-service:/app
+    networks:
+      - ecommerce-net
+
+  product-service:
+    build: ./product-service
+    ports:
+      - "5000:5000"
+    env_file:
+      - ./product-service/.env
+    volumes:
+      - ./product-service:/app
+    networks:
+      - ecommerce-net
+
+  order-service:
+    build: ./order-service
+    ports:
+      - "5003:5003"
+    env_file:
+      - ./order-service/.env
+    volumes:
+      - ./order-service:/app
+    networks:
+      - ecommerce-net
+
+  payment-service:
+    build: ./payment-service
+    ports:
+      - "5004:5004"
+    env_file:
+      - ./payment-service/.env
+    volumes:
+      - ./payment-service:/app
+    networks:
+      - ecommerce-net
+
+  react-app:
+    build: ./react-app
+    ports:
+      - "5173:5173"
+    networks:
+      - ecommerce-net
+
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - customer-service
+      - product-service
+      - order-service
+      - payment-service 
+      - react-app
+    networks:
+      - ecommerce-net
+
+networks:
+  ecommerce-net:
+
+volumes:
+  mongo-data:
