@@ -15,7 +15,7 @@ export function Payment() {
   // Lấy đơn hàng theo orderId
   useEffect(() => {
     axios
-      .get(`http://localhost:5003/admin/order-service/order/${id}`)
+      .get(`http://localhost/order-service/admin/order-service/order/${id}`)
       .then((res) => setOrder(res.data))
       .catch((err) => console.log("Đang gọi API lấy orderId:", id));
   }, [id]);
@@ -24,7 +24,7 @@ export function Payment() {
     setLoading(true);
 
     try {
-      const url = "http://localhost:5004/payment-service/fake-checkout";
+      const url = "http://localhost/payment-service/payment-service/fake-checkout";
       const payload = { id };
 
       const res = await axios.post(url, payload, {

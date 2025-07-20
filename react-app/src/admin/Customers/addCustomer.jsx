@@ -23,7 +23,7 @@ export function AddCustomer() {
 
     try {
       const res = await fetch(
-        "http://localhost:5001/admin/customer-service/add-customer",
+        "http://localhost/customer-service/admin/customer-service/add-customer",
         {
           method: "POST",
           headers: {

@@ -21,7 +21,7 @@ export function AddOrder() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/admin/product-service/products")
+      .get("http://localhost/product-service/admin/product-service/products")
       .then((res) => {
         setProducts(res.data.products);
       })
@@ -52,7 +52,7 @@ export function AddOrder() {
 
     try {
       const res = await axios.get(
-        `http://localhost:5001/admin/customer-service/phone/${phone}`
+        `http://localhost/customer-service/admin/customer-service/phone/${phone}`
       );
       setCustomerName(res.data.fullName);
       setCustomerId(res.data._id);

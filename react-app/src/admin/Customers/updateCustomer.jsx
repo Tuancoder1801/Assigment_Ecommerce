@@ -20,7 +20,7 @@ export function UpdateCustomer() {
     async function fetchCustomer() {
       try {
         const res = await fetch(
-          `http://localhost:5001/admin/customer-service/customers/${id}`
+          `http://localhost/customer-service/admin/customer-service/customers/${id}`
         );
         const data = await res.json();
 
@@ -51,7 +51,7 @@ export function UpdateCustomer() {
 
     try {
       const res = await fetch(
-        `http://localhost:5001/admin/customer-service/customers/${id}`,
+        `http://localhost/customer-service/admin/customer-service/customers/${id}`,
         {
           method: "PUT",
           headers: {

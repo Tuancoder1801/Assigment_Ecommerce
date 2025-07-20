@@ -14,7 +14,7 @@ export function ListCustomer() {
   const fetchCustomers = async () => {
     try {
       const res = await fetch(
-        "http://localhost:5001/admin/customer-service/customers"
+        "http://localhost/customer-service/admin/customer-service/customers"
       );
       const data = await res.json();
       setCustomers(data.customers || []);
@@ -29,7 +29,7 @@ export function ListCustomer() {
 
     try {
       const res = await fetch(
-        `http://localhost:5001/admin/customer-service/customers/${id}`,
+        `http://localhost/customer-service/admin/customer-service/customers/${id}`,
         {
           method: "DELETE",
         }

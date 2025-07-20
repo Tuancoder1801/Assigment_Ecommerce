@@ -23,7 +23,7 @@ export function UpdateProduct() {
     async function fetchProduct() {
       try {
         const res = await fetch(
-          `http://localhost:5000/admin/product-service/products/${id}`
+          `http://localhost/product-service/admin/product-service/products/${id}`
         );
         const data = await res.json();
 
@@ -34,7 +34,7 @@ export function UpdateProduct() {
           quantity: data.quantity,
         });
 
-        setPreviewImage(`http://localhost:5000${data.image}`);
+        setPreviewImage(`/product-service${data.image}`);
       } catch (err) {
         console.error("Error fetching product:", err);
       }

@@ -15,7 +15,7 @@ export function ListProduct() {
   const fetchProducts = async () => {
     try {
       const res = await fetch(
-        "http://localhost:5000/admin/product-service/products"
+        "http://localhost/product-service/admin/product-service/products"
       );
       const data = await res.json();
       setProducts(data.products || []);
@@ -30,7 +30,7 @@ export function ListProduct() {
 
     try {
       const res = await fetch(
-        `http://localhost:5000/admin/product-service/products/${id}`,
+        `http://localhost/product-service/admin/product-service/products/${id}`,
         {
           method: "DELETE",
         }

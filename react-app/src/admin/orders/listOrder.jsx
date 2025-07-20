@@ -2,7 +2,27 @@ import { Footer } from "../../components/footer";
 import { NavigationMenu } from "../../components/navigationMenu";
 import { Header } from "../../components/header";
 
+import { useEffect, useState } from "react";
+import axios from "axios";
+
 export function ListOrder() {
+  const [orders, setOrders] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost/order-service/admin/order-service/orders")
+      .then((res) => {
+        if (res.data.success) {
+          setOrders(res.data.orders);
+        }
+      })
+      .catch((err) => console.error(err));
+  }, []);
+
+  const filteredOrders = orders.filter((order) =>
+    order.customerName.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <>
       <div id="wrapper">
@@ -10,7 +30,7 @@ export function ListOrder() {
           <div className="layout-wrap">
             <NavigationMenu />
             <div className="section-content-right">
-              <Header/>
+              <Header />
               <div className="main-content">
                 <div className="main-content-inner">
                   <div className="main-content-wrap">
@@ -18,7 +38,7 @@ export function ListOrder() {
                       <h3>Danh sách đơn hàng</h3>
                     </div>
                     <div className="wg-box">
-                      <div className="flex items-center justify-between gap10 flex-wrap">
+                      {/* <div className="flex items-center justify-between gap10 flex-wrap">
                         <div className="wg-filter flex-grow">
                           <form className="form-search">
                             <fieldset className="name">
@@ -40,7 +60,7 @@ export function ListOrder() {
                             </div>
                           </form>
                         </div>
-                      </div>
+                      </div> */}
                       <div className="wg-table table-all-user">
                         <div className="table-responsive">
                           <table className="table table-striped table-bordered">
@@ -51,32 +71,46 @@ export function ListOrder() {
                                 <th className="text-center">Số điện thoại</th>
                                 <th className="text-center">Tổng sản phẩm</th>
                                 <th className="text-center">Tổng giá tiền</th>
-                                <th className="text-center">Trạng thái</th>
+                                {/* <th className="text-center">Trạng thái</th> */}
                                 <th className="text-center">Ngày tạo</th>
-                                <th />
+                                {/* <th /> */}
                               </tr>
                             </thead>
                             <tbody>
-                              <tr>
-                                <td className="text-center">1</td>
-                                <td className="text-center">Divyansh Kumar</td>
-                                <td className="text-center">1234567891</td>
-                                <td className="text-center">2</td>
-                                <td className="text-center">$172.00</td>
-                                <td className="text-center">ordered</td>
-                                <td className="text-center">
-                                  2024-07-11 00:54:14
-                                </td>
-                                <td className="text-center">
-                                  <a href="order-details.html">
-                                    <div className="list-icon-function view-icon">
-                                      <div className="item eye">
-                                        <i className="icon-eye" />
+                              {filteredOrders.map((order, index) => (
+                                <tr key={order._id}>
+                                  <td className="text-center">{index + 1}</td>
+                                  <td className="text-center">
+                                    {order.customerName}
+                                  </td>
+                                  <td className="text-center">{order.phone}</td>
+                                  <td className="text-center">
+                                    {order.products.length}
+                                  </td>
+                                  <td className="text-center">
+                                    {order.totalPrice.toLocaleString()} VNĐ
+                                  </td>
+                                  <td className="text-center">
+                                    {order.status}
+                                  </td>
+                                  <td className="text-center">
+                                    {new Date(order.createdAt).toLocaleString(
+                                      "vi-VN"
+                                    )}
+                                  </td>
+                                  {/* <td className="text-center">
+                                    <a
+                                      href={`/admin/order-details/${order._id}`}
+                                    >
+                                      <div className="list-icon-function view-icon">
+                                        <div className="item eye">
+                                          <i className="icon-eye" />
+                                        </div>
                                       </div>
-                                    </div>
-                                  </a>
-                                </td>
-                              </tr>
+                                    </a>
+                                  </td> */}
+                                </tr>
+                              ))}
                             </tbody>
                           </table>
                         </div>
